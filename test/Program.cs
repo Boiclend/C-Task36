@@ -49,29 +49,79 @@ void printMatrix(char[,] matrix)
     }
 }
 
+
 void InsertCross(char[,] matrix)
 {
     int count = 0;
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            try
+        {   
+
+            if(i != 0 && j != 0 && i != matrix.GetLength(0) - 1 && j != matrix.GetLength(1) - 1)
             {
-                if(matrix[i,j] != '*' && matrix[i - 1,j] != '*' && matrix[i,j - 1] != '*' && matrix[i + 1,j] != '*' && matrix[i,j + 1] != '*')
+                if(matrix[i,j] != '*' && matrix[i + 1,j] != '*' && matrix[i,j + 1] != '*' && matrix[i,j - 1] != '*' && matrix[i - 1,j] != '*')
                 {
-                count++;
+                    count++;
                 }
-     
             }
-            catch
+            else if(i == 0 && j == 0)
             {
-                count++;
+                if(matrix[i,j] != '*' && matrix[i + 1,j] != '*' && matrix[i,j + 1] != '*')
+                {
+                    count++;
+                }
             }
-            finally
+            else if(i == 0 && j == matrix.GetLength(1) - 1)
             {
-                
+                if(matrix[i,j] != '*' && matrix[i + 1,j] != '*' && matrix[i,j - 1] != '*')
+                {
+                    count++;
+                }
             }
+            else if(i == 0 && j != matrix.GetLength(1) - 1 && j != 0)
+            {
+                if(matrix[i,j] != '*' && matrix[i + 1,j] != '*' && matrix[i,j - 1] != '*' && matrix[i,j + 1] != '*')
+                {
+                    count++;
+                }
+            }
+            else if(i == matrix.GetLength(0) - 1 && j == 0)
+            {
+                if(matrix[i,j] != '*' && matrix[i - 1,j] != '*' && matrix[i,j + 1] != '*')
+                {
+                    count++;
+                }
+            }
+            else if(j == 0 && i != matrix.GetLength(0) - 1 && i != 0)
+            {
+                if(matrix[i,j] != '*' && matrix[i + 1,j] != '*' && matrix[i,j + 1] != '*' && matrix[i - 1, j] != '*')
+                {
+                    count++;
+                }
+            }
+            else if(i == matrix.GetLength(0) - 1 && j == matrix.GetLength(1) - 1)
+            {
+                if(matrix[i,j] != '*' && matrix[i - 1,j] != '*' && matrix[i,j - 1] != '*')
+                {
+                    count++;
+                }
+            }
+            else if(i == matrix.GetLength(0) - 1 && j != matrix.GetLength(1) - 1 && j != 0)
+            {
+                if(matrix[i,j] != '*' && matrix[i - 1,j] != '*' && matrix[i,j - 1] != '*' && matrix[i,j + 1] != '*')
+                {
+                    count++;
+                }
+            }
+            else if(j == matrix.GetLength(1) - 1 && i != matrix.GetLength(0) - 1 && i != 0)
+            {
+                if(matrix[i,j] != '*' && matrix[i - 1,j] != '*' && matrix[i,j - 1] != '*' && matrix[i + 1,j] != '*')
+                {
+                    count++;
+                }
+            }
+              
         }
     }
     Console.WriteLine($"Крестик можно поместить {count} раз");
